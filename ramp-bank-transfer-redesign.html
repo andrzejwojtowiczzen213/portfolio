@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ramp bank transfer redesign — Andrzej Wójtowicz</title>
+    <link rel="stylesheet" href="case-study.css" />
+  </head>
+  <body>
+    <div class="case-study-header"><a href="index.html">←Back</a><img class="case-study-avatar" src="gif-3.gif" alt="Andrzej Wójtowicz" /></div>
+    <h1 class="case-study-title">Redesign of Bank Transfer</h1>
+    <main class="case-study-content">
+      <p>Manual bank transfer is one of Ramp’s On Ramp payment methods. Although it is the cheapest option, only around 7% of users chose it and its end-to-end conversion rate was about 6%. Redesigning the flow aimed to make the process clearer and improve conversion.</p>
+      <img class="case-study-image" src="assets/ramp-network/10-bank-transfer-overview.png" alt="Ramp bank transfer payment method" data-lightbox-caption="Manual bank transfer is one of Ramp’s On Ramp payment methods. It is the cheapest option, but only around 7% of users chose it and its end-to-end conversion rate was about 6%." />
+
+      <h2>Process</h2>
+
+      <h3>Identifying the problems</h3>
+      <p>Product data and conversations with Customer Support showed that many users completed the flow but did not send the money. The instructions were unclear: some people missed the reference number, while others did not make the transfer at all.</p>
+      <img class="case-study-image" src="assets/ramp-network/11-bank-transfer-problem-analysis.png" alt="Bank transfer problem analysis" data-lightbox-caption="Data and Customer Support insights showed that users often reached the end of the flow but did not send the money because the transfer instructions were unclear." />
+
+      <h3>Competitor analysis</h3>
+      <p>I reviewed how other companies design bank transfer forms and communicate essential information. Clear infoboxes and labels were common patterns for emphasizing the reference number, so we adopted a similar approach.</p>
+      <img class="case-study-image" src="assets/ramp-network/12-bank-transfer-competitor-analysis.png" alt="Bank transfer competitor analysis" data-lightbox-caption="Competitor research showed that clear infoboxes and labels can highlight the importance of including a transfer reference number." />
+
+      <h3>Design</h3>
+      <p>We explored several directions and reviewed them in Design Critique sessions. After a few iterations, we selected one direction and prepared it for detailed refinement with the product team.</p>
+      <img class="case-study-image" src="assets/ramp-network/13-bank-transfer-design.png" alt="Bank transfer design exploration" data-lightbox-caption="Several design approaches were explored and reviewed in Design Critique before selecting a direction for refinement." />
+
+      <h3>Refinement and implementation</h3>
+      <p>I prepared the design for all possible cases and ensured the required components were available in the design system. Together with the team, we defined requirements in a Jira Epic, which engineers used to break the work into implementation tasks.</p>
+      <img class="case-study-image" src="assets/ramp-network/14-bank-transfer-refinement.png" alt="Bank transfer refinement and implementation" data-lightbox-caption="The final design covered edge cases, design-system components, and requirements documented for engineering in a Jira Epic." />
+
+      <h3>Internal usability testing</h3>
+      <p>We released the new process internally first and ran usability tests to check that every step was clear. The sessions revealed a few minor issues, which we resolved before the full launch.</p>
+      <div class="case-study-image-grid">
+        <img class="case-study-image" src="assets/ramp-network/15-bank-transfer-internal-testing-1.png" alt="First bank transfer internal test" data-lightbox-caption="The redesigned flow was released internally first so the team could validate clarity and catch issues before launch." />
+        <img class="case-study-image" src="assets/ramp-network/16-bank-transfer-internal-testing-2.png" alt="Second bank transfer internal test" data-lightbox-caption="Internal usability testing helped identify and resolve minor issues before the full release." />
+        <img class="case-study-image" src="assets/ramp-network/17-bank-transfer-internal-testing-3.png" alt="Third bank transfer internal test" data-lightbox-caption="The team refined the experience based on internal feedback before making the new process available to all users." />
+      </div>
+    </main>
+    <dialog class="case-study-lightbox" aria-label="Expanded image">
+      <button class="case-study-lightbox-close" type="button" aria-label="Close expanded image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19" /></svg></button>
+      <button class="case-study-lightbox-nav case-study-lightbox-prev" type="button" aria-label="Previous image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg></button>
+      <img src="" alt="" />
+      <p class="case-study-lightbox-caption"></p>
+      <button class="case-study-lightbox-nav case-study-lightbox-next" type="button" aria-label="Next image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></button>
+    </dialog>
+    <script>
+      const lightbox = document.querySelector('.case-study-lightbox');
+      const lightboxImage = lightbox.querySelector('img');
+      const lightboxCaption = lightbox.querySelector('.case-study-lightbox-caption');
+      const closeLightbox = lightbox.querySelector('button');
+      const previousImage = lightbox.querySelector('.case-study-lightbox-prev');
+      const nextImage = lightbox.querySelector('.case-study-lightbox-next');
+      const galleryImages = Array.from(document.querySelectorAll('.case-study-image'));
+      let galleryIndex = 0;
+
+      function showImage(index) {
+        galleryIndex = (index + galleryImages.length) % galleryImages.length;
+        const image = galleryImages[galleryIndex];
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxCaption.textContent = image.dataset.lightboxCaption;
+      }
+
+      function openLightbox(image) {
+        showImage(galleryImages.indexOf(image));
+        if (!lightbox.open) lightbox.showModal();
+      }
+
+      galleryImages.forEach(function(image) {
+        image.tabIndex = 0;
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-label', 'Expand image: ' + image.alt);
+        image.addEventListener('click', function() { openLightbox(image); });
+        image.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openLightbox(image);
+          }
+        });
+      });
+
+      closeLightbox.addEventListener('click', function() { lightbox.close(); });
+      previousImage.addEventListener('click', function() { showImage(galleryIndex - 1); });
+      nextImage.addEventListener('click', function() { showImage(galleryIndex + 1); });
+      lightbox.addEventListener('click', function(event) {
+        if (event.target === lightbox) lightbox.close();
+      });
+      document.addEventListener('keydown', function(event) {
+        if (!lightbox.open) return;
+        if (event.key === 'ArrowLeft') showImage(galleryIndex - 1);
+        if (event.key === 'ArrowRight') showImage(galleryIndex + 1);
+      });
+    </script>
+  </body>
+</html>

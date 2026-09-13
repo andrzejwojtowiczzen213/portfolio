@@ -1,0 +1,253 @@
+body {
+  margin: 64px auto 0;
+  max-width: 1440px;
+  padding: 0 64px;
+  box-sizing: border-box;
+  font-size: 2rem;
+}
+
+a,
+a:visited,
+a:active {
+  color: blue;
+}
+
+a:hover {
+  color: #00008b;
+}
+
+.case-study-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: fixed;
+  top: 64px;
+  left: max(64px, calc((100vw - 1440px) / 2 + 64px));
+  right: max(64px, calc((100vw - 1440px) / 2 + 64px));
+  z-index: 2;
+}
+
+.case-study-header a {
+  position: relative;
+  z-index: 0;
+}
+
+.case-study-header a::after {
+  content: '';
+  position: absolute;
+  inset: -0.3em -0.45em;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.9;
+  background-image:
+    radial-gradient(circle, blue 1px, transparent 1.6px),
+    radial-gradient(circle, blue 0.7px, transparent 1.3px);
+  background-position: 0 0, 3px 3px;
+  background-size: 6px 6px, 9px 9px;
+  mix-blend-mode: screen;
+}
+
+.case-study-avatar {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+}
+
+.case-study-title {
+  margin: 208px 0 0;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.case-study-content {
+  max-width: 760px;
+  margin-top: 48px;
+  line-height: 1.5;
+}
+
+.case-study-content h2 {
+  margin: 64px 0 24px;
+  font-size: 2.5rem;
+}
+
+.case-study-content h3 {
+  margin: 40px 0 12px;
+  font-size: 1.5rem;
+}
+
+.case-study-content p {
+  margin: 0;
+}
+
+.case-study-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 32px;
+  cursor: zoom-in;
+}
+
+.case-study-image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.case-study-image-grid .case-study-image {
+  margin: 0;
+}
+
+.case-study-lightbox {
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.case-study-lightbox[open] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.case-study-lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.case-study-lightbox img {
+  display: block;
+  width: auto;
+  max-width: 90vw;
+  max-height: 68vh;
+  object-fit: contain;
+  background: white;
+}
+
+.case-study-lightbox-caption {
+  width: min(90vw, 900px);
+  margin: 0;
+  color: white;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.case-study-lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: white;
+  padding: 0;
+  cursor: pointer;
+  z-index: 3;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.case-study-lightbox-nav {
+  position: fixed;
+  top: 50%;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: white;
+  padding: 0;
+  cursor: pointer;
+  transform: translateY(-50%);
+  z-index: 3;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.7));
+}
+
+.case-study-lightbox-icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.case-study-lightbox-prev {
+  left: 20px;
+}
+
+.case-study-lightbox-next {
+  right: 20px;
+}
+
+@media (max-width: 760px) {
+  body {
+    margin-top: 24px;
+    padding: 0 20px;
+  }
+
+  .case-study-header {
+    top: 24px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .case-study-title {
+    margin-top: 192px;
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+
+  .case-study-content {
+    margin-top: 32px;
+    font-size: clamp(1.25rem, 5.5vw, 1.75rem);
+  }
+
+  .case-study-content h2 {
+    margin: 48px 0 20px;
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+
+  .case-study-image-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .case-study-lightbox-close {
+    top: 12px;
+    right: 12px;
+  }
+
+  .case-study-lightbox-nav {
+    width: 44px;
+    height: 44px;
+  }
+
+  .case-study-lightbox img {
+    max-height: 58vh;
+  }
+
+  .case-study-lightbox-caption {
+    font-size: 1rem;
+  }
+
+  .case-study-lightbox-prev {
+    left: 12px;
+  }
+
+  .case-study-lightbox-next {
+    right: 12px;
+  }
+}

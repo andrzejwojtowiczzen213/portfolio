@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ramp new exchange page — Andrzej Wójtowicz</title>
+    <link rel="stylesheet" href="case-study.css" />
+  </head>
+  <body>
+    <div class="case-study-header"><a href="index.html">←Back</a><img class="case-study-avatar" src="gif-3.gif" alt="Andrzej Wójtowicz" /></div>
+    <h1 class="case-study-title">New Exchange Page</h1>
+    <main class="case-study-content">
+      <p>The exchange page is the first step in Ramp’s buy and sell flow. Here, users choose a token and currency, enter transaction details, and review the fees before continuing.</p>
+      <img class="case-study-image" src="assets/ramp-network/01-exchange-page-overview.png" alt="Ramp exchange page" data-lightbox-caption="The exchange page is the first step in Ramp’s buy and sell flow. Users choose a token and currency, enter transaction details, and review fees before continuing." />
+
+      <h2>Process</h2>
+
+      <h3>Understanding the existing flow</h3>
+      <p>As part of a wider flow redesign, I analysed the existing exchange page to identify pain points. I combined product data from Amplitude, session recordings from Hotjar, and competitor research to understand where users needed more clarity.</p>
+      <div class="case-study-image-grid">
+        <img class="case-study-image" src="assets/ramp-network/02-existing-flow-analysis.png" alt="Analysis of the existing exchange flow" data-lightbox-caption="I analysed the existing exchange page using Amplitude data, Hotjar recordings, and competitor research to identify where users needed more clarity." />
+        <img class="case-study-image" src="assets/ramp-network/03-competitor-analysis.png" alt="Competitor analysis for the exchange flow" data-lightbox-caption="I analysed the existing exchange page using Amplitude data, Hotjar recordings, and competitor research to identify where users needed more clarity." />
+      </div>
+
+      <h3>Ideation</h3>
+      <p>I worked with the Product Manager and design team to explore several directions, assess their strengths and trade-offs, and select the most promising concepts to test.</p>
+      <img class="case-study-image" src="assets/ramp-network/04-ideation.png" alt="Exchange page ideation" data-lightbox-caption="Together with the Product Manager and design team, I explored multiple directions, assessed their trade-offs, and selected the most promising concepts to test." />
+
+      <h3>Usability testing</h3>
+      <p>We developed two high-fidelity variants and tested them through interactive prototypes. I ran 8 moderated interviews and 40 unmoderated usability tests to understand how clearly each version supported the task.</p>
+      <div class="case-study-image-grid">
+        <img class="case-study-image" src="assets/ramp-network/05-usability-test-variant-1.png" alt="First exchange page test variant" data-lightbox-caption="We tested two high-fidelity variants through interactive prototypes, including 8 moderated interviews and 40 unmoderated usability tests." />
+        <img class="case-study-image" src="assets/ramp-network/06-usability-test-variant-2.png" alt="Second exchange page test variant" data-lightbox-caption="We tested two high-fidelity variants through interactive prototypes, including 8 moderated interviews and 40 unmoderated usability tests." />
+      </div>
+
+      <h3>Choosing a direction</h3>
+      <p>The findings showed that 20% of participants struggled to switch between inputs in the first variant. Based on the results, we selected the second variant and used the insights to refine the final design.</p>
+      <img class="case-study-image" src="assets/ramp-network/07-usability-test-results.png" alt="Usability testing results" data-lightbox-caption="Twenty percent of participants struggled to switch between inputs in the first variant, so we selected the second variant and used the findings to refine the final design." />
+
+      <h3>Design, handoff, and release</h3>
+      <p>I documented edge cases, refined the design with the product team, and added any missing components to the design system. I then partnered with engineering to define the Jira scope and acceptance criteria, supported implementation, and monitored the release through internal testing, A/B tests, and product analytics.</p>
+      <div class="case-study-image-grid">
+        <img class="case-study-image" src="assets/ramp-network/08-final-design.png" alt="Final exchange page design" data-lightbox-caption="I documented edge cases, refined the design with the product team, and added any missing components to the design system before handoff." />
+        <img class="case-study-image" src="assets/ramp-network/09-release-and-monitoring.png" alt="Exchange page release and monitoring" data-lightbox-caption="I partnered with engineering on scope and acceptance criteria, supported implementation, and monitored the release through testing, A/B tests, and product analytics." />
+      </div>
+
+      <h2>Outcome</h2>
+      <p>The redesigned exchange page contributes to a smoother crypto transaction experience used by Ramp customers around the world.</p>
+    </main>
+    <dialog class="case-study-lightbox" aria-label="Expanded image">
+      <button class="case-study-lightbox-close" type="button" aria-label="Close expanded image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19" /></svg></button>
+      <button class="case-study-lightbox-nav case-study-lightbox-prev" type="button" aria-label="Previous image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg></button>
+      <img src="" alt="" />
+      <p class="case-study-lightbox-caption"></p>
+      <button class="case-study-lightbox-nav case-study-lightbox-next" type="button" aria-label="Next image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></button>
+    </dialog>
+    <script>
+      const lightbox = document.querySelector('.case-study-lightbox');
+      const lightboxImage = lightbox.querySelector('img');
+      const lightboxCaption = lightbox.querySelector('.case-study-lightbox-caption');
+      const closeLightbox = lightbox.querySelector('button');
+      const previousImage = lightbox.querySelector('.case-study-lightbox-prev');
+      const nextImage = lightbox.querySelector('.case-study-lightbox-next');
+      const galleryImages = Array.from(document.querySelectorAll('.case-study-image'));
+      let galleryIndex = 0;
+
+      function showImage(index) {
+        galleryIndex = (index + galleryImages.length) % galleryImages.length;
+        const image = galleryImages[galleryIndex];
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxCaption.textContent = image.dataset.lightboxCaption;
+      }
+
+      function openLightbox(image) {
+        showImage(galleryImages.indexOf(image));
+        if (!lightbox.open) lightbox.showModal();
+      }
+
+      galleryImages.forEach(function(image) {
+        image.tabIndex = 0;
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-label', 'Expand image: ' + image.alt);
+        image.addEventListener('click', function() { openLightbox(image); });
+        image.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openLightbox(image);
+          }
+        });
+      });
+
+      closeLightbox.addEventListener('click', function() { lightbox.close(); });
+      previousImage.addEventListener('click', function() { showImage(galleryIndex - 1); });
+      nextImage.addEventListener('click', function() { showImage(galleryIndex + 1); });
+      lightbox.addEventListener('click', function(event) {
+        if (event.target === lightbox) lightbox.close();
+      });
+      document.addEventListener('keydown', function(event) {
+        if (!lightbox.open) return;
+        if (event.key === 'ArrowLeft') showImage(galleryIndex - 1);
+        if (event.key === 'ArrowRight') showImage(galleryIndex + 1);
+      });
+    </script>
+  </body>
+</html>
