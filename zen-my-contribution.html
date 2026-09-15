@@ -9,5 +9,83 @@
   <body>
     <div class="case-study-header"><a href="index.html">←Back</a><img class="case-study-avatar" src="gif-3.gif" alt="Andrzej Wójtowicz" /></div>
     <h1 class="case-study-title">My contribution</h1>
+    <main class="case-study-content">
+      <p>ZEN.com is a fintech app that simplifies payments and financial services for people and businesses. I worked across its mobile experience, helping shape ideas into user-centred designs and supporting them through delivery.</p>
+      <img class="case-study-image" src="assets/zen-case/02-zen-product.png" alt="ZEN mobile app overview" data-lightbox-caption="The ZEN mobile experience brought together balances, cards, transfers, currency exchange, cashback, and deals in one app." />
+
+      <h2>My contribution</h2>
+      <p>I was responsible for UX design, UI design, and ideation. I partnered with business and analytics teams to understand user needs, create user-centred solutions, and work with developers to bring them to life.</p>
+      <img class="case-study-image" src="assets/zen-case/03-zen-process.png" alt="ZEN cashback and card experience" data-lightbox-caption="A collection of mobile experiences for cashback, card benefits, and account features." />
+
+      <h2>The team</h2>
+      <p>I was part of an eight-person design team at a startup of more than 100 people. The team included product designers, analysts, UX researchers, and brand designers, working closely with product teams across mobile, web, and back-office tools.</p>
+
+      <h2>Process</h2>
+      <h3>From idea to handoff</h3>
+      <p>I started from the ideation phase, collaborating with designers, product managers, and stakeholders to explore the problem space and align on a solution. I then prepared detailed designs, user flows, and edge cases to support implementation and later refinement.</p>
+      <img class="case-study-image" src="assets/zen-case/04-zen-design.png" alt="ZEN account and balance experience" data-lightbox-caption="Account settings and balance experiences designed as part of the wider ZEN mobile product." />
+
+      <h3>Implementation and iteration</h3>
+      <p>During development, I tested early builds, checked edge cases, and worked with engineers to make sure the final result matched the design. After release, I used product data and usability testing to understand behaviour and improve the experience.</p>
+      <img class="case-study-image" src="assets/zen-case/05-zen-outcome.png" alt="ZEN payment checkout experience" data-lightbox-caption="A responsive payment experience supporting cards, Apple Pay, Google Pay, ZEN, and other payment methods." />
+
+      <h2>Outcome</h2>
+      <p>ZEN launched with major promotions in Poland and other markets, attracting tens of thousands of users on its first day. Working on the launch was a defining learning experience, and the product has since grown into one of Poland's leading fintech companies.</p>
+    </main>
+    <dialog class="case-study-lightbox" aria-label="Expanded image">
+      <button class="case-study-lightbox-close" type="button" aria-label="Close expanded image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19" /></svg></button>
+      <button class="case-study-lightbox-nav case-study-lightbox-prev" type="button" aria-label="Previous image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg></button>
+      <img src="" alt="" />
+      <p class="case-study-lightbox-caption"></p>
+      <button class="case-study-lightbox-nav case-study-lightbox-next" type="button" aria-label="Next image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></button>
+    </dialog>
+    <script>
+      const lightbox = document.querySelector('.case-study-lightbox');
+      const lightboxImage = lightbox.querySelector('img');
+      const lightboxCaption = lightbox.querySelector('.case-study-lightbox-caption');
+      const closeLightbox = lightbox.querySelector('button');
+      const previousImage = lightbox.querySelector('.case-study-lightbox-prev');
+      const nextImage = lightbox.querySelector('.case-study-lightbox-next');
+      const galleryImages = Array.from(document.querySelectorAll('.case-study-image'));
+      let galleryIndex = 0;
+
+      function showImage(index) {
+        galleryIndex = (index + galleryImages.length) % galleryImages.length;
+        const image = galleryImages[galleryIndex];
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxCaption.textContent = image.dataset.lightboxCaption;
+      }
+
+      function openLightbox(image) {
+        showImage(galleryImages.indexOf(image));
+        if (!lightbox.open) lightbox.showModal();
+      }
+
+      galleryImages.forEach(function(image) {
+        image.tabIndex = 0;
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-label', 'Expand image: ' + image.alt);
+        image.addEventListener('click', function() { openLightbox(image); });
+        image.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openLightbox(image);
+          }
+        });
+      });
+
+      closeLightbox.addEventListener('click', function() { lightbox.close(); });
+      previousImage.addEventListener('click', function() { showImage(galleryIndex - 1); });
+      nextImage.addEventListener('click', function() { showImage(galleryIndex + 1); });
+      lightbox.addEventListener('click', function(event) {
+        if (event.target === lightbox) lightbox.close();
+      });
+      document.addEventListener('keydown', function(event) {
+        if (!lightbox.open) return;
+        if (event.key === 'ArrowLeft') showImage(galleryIndex - 1);
+        if (event.key === 'ArrowRight') showImage(galleryIndex + 1);
+      });
+    </script>
   </body>
 </html>
