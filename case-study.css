@@ -27,26 +27,6 @@ a:hover {
   z-index: 2;
 }
 
-.case-study-header a {
-  position: relative;
-  z-index: 0;
-}
-
-.case-study-header a::after {
-  content: '';
-  position: absolute;
-  inset: -0.3em -0.45em;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.9;
-  background-image:
-    radial-gradient(circle, blue 1px, transparent 1.6px),
-    radial-gradient(circle, blue 0.7px, transparent 1.3px);
-  background-position: 0 0, 3px 3px;
-  background-size: 6px 6px, 9px 9px;
-  mix-blend-mode: screen;
-}
-
 .case-study-avatar {
   width: 160px;
   height: 160px;

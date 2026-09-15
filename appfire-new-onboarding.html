@@ -9,5 +9,94 @@
   <body>
     <div class="case-study-header"><a href="index.html">←Back</a><img class="case-study-avatar" src="gif-3.gif" alt="Andrzej Wójtowicz" /></div>
     <h1 class="case-study-title">New onboarding process</h1>
+    <main class="case-study-content">
+      <p>Whiteboards was a collaboration plugin for Jira and Confluence, designed for agile planning, retrospectives, and daily stand-ups. Before launching a marketing campaign, we redesigned its sign-up journey to reduce drop-off and make the first experience clearer.</p>
+      <img class="case-study-image" src="assets/appfire/01-onboarding-overview.png" alt="Whiteboards onboarding overview" data-lightbox-caption="Whiteboards was a Jira and Confluence collaboration plugin for agile teams. The onboarding redesign focused on making the first experience clearer and easier to complete." />
+
+      <h2>Process</h2>
+
+      <h3>Why we redesigned sign-up</h3>
+      <p>Sign-up conversion was only 20%, so increasing marketing traffic without improving the journey would not have been effective. The existing flow was not mobile-friendly, included unnecessary steps and unclear copy, and used an outdated UI.</p>
+      <img class="case-study-image" src="assets/appfire/02-onboarding-existing-flow.png" alt="Existing Whiteboards sign-up flow" data-lightbox-caption="The existing sign-up process was not mobile-friendly, included unnecessary steps and unclear copy, and did not create a strong first impression." />
+
+      <h3>Funnel analysis</h3>
+      <p>Nearly 60% of users dropped off at the first step. Google SSO was the most popular authentication option and converted 20% better than other methods, while only 40% of users completed email verification.</p>
+      <img class="case-study-image" src="assets/appfire/03-onboarding-funnel-analysis.png" alt="Whiteboards onboarding funnel analysis" data-lightbox-caption="The analysis showed significant early drop-off, stronger conversion through SSO, and friction around email verification." />
+
+      <h3>Competitor analysis</h3>
+      <p>I reviewed sign-up best practices to understand what makes the process feel simpler. The strongest patterns were one decision per step, clearer Google SSO prominence, social proof, and UI cues that make the journey appear shorter.</p>
+      <img class="case-study-image" src="assets/appfire/04-onboarding-competitor-analysis.png" alt="Whiteboards onboarding competitor analysis" data-lightbox-caption="Competitor research informed a simpler flow: one decision per step, more visible Google SSO, social proof, and cues that make the process feel shorter." />
+
+      <h3>Tailoring the flow</h3>
+      <p>We reduced the information requested during sign-up, made Google SSO more prominent, and switched email verification to a code. We kept only the user role, removed the teammate-invite step, and ended onboarding directly on a board with the template library visible.</p>
+      <img class="case-study-image" src="assets/appfire/05-onboarding-tailored-flow.png" alt="Tailored Whiteboards onboarding flow" data-lightbox-caption="The new flow removed unnecessary questions and steps, highlighted Google SSO, and brought users directly to a board with the template library visible." />
+
+      <h3>UI design</h3>
+      <p>I designed the new journey and mapped all user paths with the team. We used these paths to discuss the experience in detail and break the initiative into clear, deliverable parts.</p>
+      <img class="case-study-image" src="assets/appfire/06-onboarding-ui.png" alt="Whiteboards onboarding user interface" data-lightbox-caption="The redesigned UI was planned across all user paths and refined with the product team before implementation." />
+
+      <h3>Scoping, handoff, and testing</h3>
+      <p>Once the design was ready, we created an epic, refined and estimated the work, and handed individual elements to engineering. During implementation, my main responsibility was testing the experience across the full flow.</p>
+      <img class="case-study-image" src="assets/appfire/07-onboarding-handoff-testing.png" alt="Whiteboards onboarding handoff and testing" data-lightbox-caption="The implementation was scoped through an epic, refined with engineering, and tested across the complete sign-up journey." />
+
+      <h2>Outcome</h2>
+      <p>After release, we monitored the new funnel with a dedicated analytics dashboard. Conversion increased from 19% to 36.5%, Google SSO adoption grew, and every step of the process showed stronger conversion.</p>
+      <img class="case-study-image" src="assets/appfire/08-onboarding-release.png" alt="Whiteboards onboarding release results" data-lightbox-caption="The released sign-up flow increased conversion from 19% to 36.5%, with higher Google SSO usage and improved conversion at every step." />
+    </main>
+    <dialog class="case-study-lightbox" aria-label="Expanded image">
+      <button class="case-study-lightbox-close" type="button" aria-label="Close expanded image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19" /></svg></button>
+      <button class="case-study-lightbox-nav case-study-lightbox-prev" type="button" aria-label="Previous image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg></button>
+      <img src="" alt="" />
+      <p class="case-study-lightbox-caption"></p>
+      <button class="case-study-lightbox-nav case-study-lightbox-next" type="button" aria-label="Next image"><svg class="case-study-lightbox-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></button>
+    </dialog>
+    <script>
+      const lightbox = document.querySelector('.case-study-lightbox');
+      const lightboxImage = lightbox.querySelector('img');
+      const lightboxCaption = lightbox.querySelector('.case-study-lightbox-caption');
+      const closeLightbox = lightbox.querySelector('button');
+      const previousImage = lightbox.querySelector('.case-study-lightbox-prev');
+      const nextImage = lightbox.querySelector('.case-study-lightbox-next');
+      const galleryImages = Array.from(document.querySelectorAll('.case-study-image'));
+      let galleryIndex = 0;
+
+      function showImage(index) {
+        galleryIndex = (index + galleryImages.length) % galleryImages.length;
+        const image = galleryImages[galleryIndex];
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxCaption.textContent = image.dataset.lightboxCaption;
+      }
+
+      function openLightbox(image) {
+        showImage(galleryImages.indexOf(image));
+        if (!lightbox.open) lightbox.showModal();
+      }
+
+      galleryImages.forEach(function(image) {
+        image.tabIndex = 0;
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-label', 'Expand image: ' + image.alt);
+        image.addEventListener('click', function() { openLightbox(image); });
+        image.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openLightbox(image);
+          }
+        });
+      });
+
+      closeLightbox.addEventListener('click', function() { lightbox.close(); });
+      previousImage.addEventListener('click', function() { showImage(galleryIndex - 1); });
+      nextImage.addEventListener('click', function() { showImage(galleryIndex + 1); });
+      lightbox.addEventListener('click', function(event) {
+        if (event.target === lightbox) lightbox.close();
+      });
+      document.addEventListener('keydown', function(event) {
+        if (!lightbox.open) return;
+        if (event.key === 'ArrowLeft') showImage(galleryIndex - 1);
+        if (event.key === 'ArrowRight') showImage(galleryIndex + 1);
+      });
+    </script>
   </body>
 </html>
