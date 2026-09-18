@@ -574,11 +574,14 @@
           }
         });
       });
-      // Auto-activate About me on load
-      var firstItem = document.querySelector('.h2-item[data-target="about-me-content"]');
-      if (firstItem) {
-        firstItem.classList.add('active');
-        document.getElementById('about-me-content').style.display = 'block';
+      // Open a specific homepage panel when a case study links back with a hash.
+      var panelByHash = { '#inpost': 'inpost-text' };
+      var initialPanelId = panelByHash[window.location.hash] || 'about-me-content';
+      var initialItem = document.querySelector('.h2-item[data-target="' + initialPanelId + '"]');
+      var initialPanel = document.getElementById(initialPanelId);
+      if (initialItem && initialPanel) {
+        initialItem.classList.add('active');
+        initialPanel.style.display = 'block';
       }
 
       function updateHomepageHeaderHeight() {
