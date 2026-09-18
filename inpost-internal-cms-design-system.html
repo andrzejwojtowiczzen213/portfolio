@@ -3,11 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="gif-3.gif" type="image/gif" />
     <title>InPost internal CMS and web design system — Andrzej Wójtowicz</title>
-    <link rel="stylesheet" href="case-study.css" />
+    <link rel="stylesheet" href="case-study.css?v=5" />
   </head>
   <body>
     <div class="case-study-header"><a href="index.html">←Back</a><img class="case-study-avatar" src="gif-3.gif" alt="Andrzej Wójtowicz" /></div>
     <h1 class="case-study-title">Internal CMS and web design system</h1>
+    <main class="case-study-content">
+      <p><strong>Problem</strong><br>Different markets used different CMS platforms and website visual styles. External agencies were needed to create and update pages, making routine work slow and expensive.</p>
+      <p class="case-study-goal" style="margin-top: 48px;"><strong>Goal</strong><br>Create one shared tool for every market, with a consistent visual language, so teams could build pages themselves faster—without needing a designer or engineer.</p>
+      <img class="case-study-image" style="margin-top: 48px;" src="assets/inpost-cms/inpost-websites-across-markets.png" alt="InPost websites across different markets" />
+      <h2>Our Approach</h2>
+      <p>We decided to build our CMS on <a href="https://payloadcms.com/" target="_blank" rel="noopener noreferrer">Payload↗</a>, an open-source solution. We created Content Platform: a simple visual page-building tool, similar to Webflow. It gives InPost one tool to build, publish, and maintain websites across every market.</p>
+      <p class="case-study-image-note">[ Image: Content Platform screenshot ]</p>
+      <h2>Our Visual Design:<br>Layer #1 — Tokens</h2>
+      <p>Tokens are the smallest building blocks of our design system. We created a shared set of primitive and semantic colour tokens used across all InPost products. They provide one foundation with different modes for each brand, such as Mondial Relay in France and InPost in Poland.</p>
+      <p class="case-study-image-note">[ Image: Token screenshot ]</p>
+      <h2>Layer #2 — Web Design System</h2>
+      <p>Based on these tokens, we built a web design system of reusable components.</p>
+      <p class="case-study-image-note">[ Image: Web design system screenshots from Figma ]</p>
+      <h2>Layer #3 — Sections</h2>
+      <p>Sections are ready-made parts of a website built with the web design system. They let teams assemble complete pages quickly—a simple landing page can use five to eight sections.</p>
+      <p class="case-study-image-note">[ Image: Figma sections screenshot ]</p>
+      <h2>Layer #4 — Ready-made Sections in Content Platform</h2>
+      <p>We recreated the sections designed in Figma one-to-one in Content Platform. Creators can choose ready-made sections and use them to build pages.</p>
+      <p class="case-study-image-note">[ Image: Content Platform page built from ready-made sections ]</p>
+      <h2>Result</h2>
+      <p>We have already migrated hundreds of pages across different markets, including the full <a href="https://inpost.pl/" target="_blank" rel="noopener noreferrer">inpost.pl↗</a>, <a href="https://inpost.pt/" target="_blank" rel="noopener noreferrer">inpost.pt↗</a>, <a href="https://inpost.es/" target="_blank" rel="noopener noreferrer">inpost.es↗</a>, and <a href="https://inpost.sk/" target="_blank" rel="noopener noreferrer">inpost.sk↗</a> websites. Creating new pages is now a matter of hours instead of weeks. The next markets are in progress.</p>
+    </main>
   </body>
 </html>
