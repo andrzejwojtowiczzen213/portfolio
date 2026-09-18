@@ -1,7 +1,7 @@
 body {
   margin: 64px auto 0;
   max-width: 1440px;
-  padding: 0 64px;
+  padding: 0 64px 100px;
   box-sizing: border-box;
   font-size: 2rem;
 }
@@ -193,7 +193,7 @@ a:hover {
 @media (max-width: 760px) {
   body {
     margin-top: 24px;
-    padding: 0 20px;
+    padding: 0 20px 100px;
   }
 
   .case-study-header {
